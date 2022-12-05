@@ -1,0 +1,30 @@
+{
+  "name": "FootballMatch",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int",
+      "isPrimary": true
+    },
+    {
+      "name": "FirstTeam",
+      "type": "string",
+      "isPrimary": false
+    },
+    {
+      "name": "SecondTeam",
+      "type": "string",
+      "isPrimary": false
+    },
+    {
+      "name": "FirstTeamScore",
+      "type": "int",
+      "isPrimary": false
+    },
+    {
+      "name": "SecondTeamScore",
+      "type": "int",
+      "isPrimary": false
+    }
+  ]
+}
