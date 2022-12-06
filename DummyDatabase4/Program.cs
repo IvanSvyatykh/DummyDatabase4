@@ -9,9 +9,9 @@ namespace DummyDatabase
         {
             List<Schema> schemas = new List<Schema>();
 
-            string footballMatch = "\\FootballMatch.Json";
+            string footballMatchJson = "\\FootballMatch.Json";
 
-           schemas.Add(ParseJsonFile.ReadJson(footballMatch));
+           schemas.Add(ParseJsonFile.ReadJson(footballMatchJson));
         }
 
     }

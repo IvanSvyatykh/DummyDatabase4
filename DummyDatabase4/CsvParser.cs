@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace DummyDatabase4
 {
-    public class Column
+    internal class CsvParser
     {
-        public object Data { get; set; }
-        public string Type { get; set; }
-        public string Name { get; set; }
     }
 }

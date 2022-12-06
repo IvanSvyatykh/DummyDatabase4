@@ -7,7 +7,7 @@ namespace DummyDatabase4
     {
         public string Name { get; set; }
 
-        public List<Column> Schemas { get; set;}
+        public List<Column> Columns { get; set;} = new List<Column>();  
         
     }
 }
