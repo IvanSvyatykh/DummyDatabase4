@@ -10,7 +10,6 @@ namespace DummyDatabase4
     public class ParseJsonFile
     {
         static string NameProject = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-
         public static string DataParse(string line)
         {
             var charsToRemove = new string[] { ",", "\\", "; ", "\"" };
@@ -21,42 +20,27 @@ namespace DummyDatabase4
             string[] splitted = line.Split(new char[] { ':', ',' });
             return splitted[1].Trim();
         }
-        public static string TypeDetermine(string str, int count)
-        {
-            switch (str)
-            {
-                case "int":
-                    return "int";
-                case "float":
-                    return "float";
-                case "double":
-                    return "double";
-                case "string":
-                    return "string";
-                case "long":
-                    return "long";
-                default: throw new ArgumentException($"Неизвестный тип данных в json схеме.Ошибка в {count} строке");
-
-            }
-        }
         public static Schema ReadJson(string fileName)
         {
             Schema schema = new Schema();
             Column column = new Column();
+            Element element = new Element();
 
             int countName = 0;
             int count = 0;
 
+            string name = null;
+
             foreach (string line in File.ReadLines(NameProject + fileName))
             {
-                MakeSchema(line, ref countName, count, schema, ref column);
+                MakeSchema(line, ref countName, count, schema, column, ref element, ref name);
                 count++;
             }
 
             schema.Columns.Add(column);
             return schema;
         }
-        public static void MakeSchema(string line, ref int countName, int count, Schema schema, ref Column column)
+        public static void MakeSchema(string line, ref int countName, int count, Schema schema, Column column, ref Element element, ref string name)
         {
             if (line.Contains("name") && countName == 0)
             {
@@ -65,17 +49,15 @@ namespace DummyDatabase4
             }
             else if (line.Contains("name"))
             {
-                if (column.Name != null)
-                {
-                    schema.Columns.Add(column);
-                    column = new Column();
-                }
-                column.Name = DataParse(line);
+                column.Data.Add(DataParse(line), null);
+                name = DataParse(line);
             }
             if (line.Contains("type"))
             {
-                string str = DataParse(line);
-                column.Type = TypeDetermine(str, count);
+                element.Type = DataParse(line);
+                element.Data = null;
+                column.Data[name] = element;
+                element = new Element();
             }
         }
     }

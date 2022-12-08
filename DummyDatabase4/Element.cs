@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DummyDatabase4
 {
-    public class Column
+    public class Element
     {
-        public Dictionary<string, Element> Data = new Dictionary<string, Element>();
+        public object Data { get; set; }
+        public string Type { get; set; }
     }
 }
