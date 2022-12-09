@@ -4,14 +4,18 @@ using System;
 namespace DummyDatabase
 {
     public class Programm
-    {  
+    {
         static void Main()
         {
             List<Schema> schemas = new List<Schema>();
 
-            string footballMatchJson = "\\FootballMatch.Json";
+            string[] path = new string[] { "\\FootballMatch." };
 
-           schemas.Add(ParseJsonFile.ReadJson(footballMatchJson));
+            for (int i = 0; i < path.Length; i++)
+            {
+                schemas.Add(ParseJsonFile.ReadJson(path[i] + "json"));
+                schemas[i] = CsvParser.ReadFile(path[i] + "csv", schemas[i]);
+            }
         }
 
     }

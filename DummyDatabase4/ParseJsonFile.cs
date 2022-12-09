@@ -49,14 +49,14 @@ namespace DummyDatabase4
             }
             else if (line.Contains("name"))
             {
-                column.Data.Add(DataParse(line), null);
+                column.Line.Add(DataParse(line), null);
                 name = DataParse(line);
             }
             if (line.Contains("type"))
             {
                 element.Type = DataParse(line);
                 element.Data = null;
-                column.Data[name] = element;
+                column.Line[name] = element;
                 element = new Element();
             }
         }

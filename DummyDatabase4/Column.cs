@@ -8,6 +8,6 @@ namespace DummyDatabase4
 {
     public class Column
     {
-        public Dictionary<string, Element> Data = new Dictionary<string, Element>();
+        public Dictionary<string, Element> Line = new Dictionary<string, Element>();
     }
 }
