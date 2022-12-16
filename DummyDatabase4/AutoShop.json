@@ -1,0 +1,25 @@
+﻿{
+  "name": "AutoShop",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int",
+      "isPrimary": true
+    },
+    {
+      "name": "NameOfCar",
+      "type": "string",
+      "isPrimary": false
+    },
+    {
+      "name": "YearOfProduction",
+      "type": "int",
+      "isPrimary": false
+    },
+    {
+      "name": "Milage",
+      "type": "int",
+      "isPrimary": false
+    }
+  ]
+}

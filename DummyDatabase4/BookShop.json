@@ -1,0 +1,25 @@
+﻿{
+  "name": "BookShop",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int",
+      "isPrimary": true
+    },
+    {
+      "name": "BookName",
+      "type": "string",
+      "isPrimary": false
+    },
+    {
+      "name": "AuthorName",
+      "type": "string",
+      "isPrimary": false
+    },
+    {
+      "name": "Cost",
+      "type": "int",
+      "isPrimary": false
+    }  
+  ]
+}
