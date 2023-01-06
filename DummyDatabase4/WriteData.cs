@@ -8,6 +8,7 @@ namespace DummyDatabase4
 {
     public class WriterData
     {
+
         private static int Lenght(Dictionary<string, int> MaxLengthOfColumn)
         {
             int length = 0;
@@ -21,7 +22,7 @@ namespace DummyDatabase4
 
             return length;
         }
-        public static void WriteData(Schema schema, Dictionary<string, int> MaxLengthOfColumn , ref int Y)
+        public static int WriteData(Schema schema, Dictionary<string, int> MaxLengthOfColumn, int Y)
         {
             int length = Lenght(MaxLengthOfColumn);
 
@@ -31,13 +32,15 @@ namespace DummyDatabase4
             Y++;
             EndLine(length, Y);
             Y++;
-            for (int i = 0; i < schema.Columns.Count; i++)
+            
+            for (int i = 0; i < schema.Data.First().Value.Count; i++)
             {
-                CreateLine(schema.Columns[i], MaxLengthOfColumn, Y);
+                CreateLine(schema.Data, MaxLengthOfColumn, Y ,i);
                 Y++;
                 EndLine(length, Y);
                 Y++;
             }
+            return Y;
         }
         private static void CreateHeadLine(Dictionary<string, int> MaxLengthOfColumn, int Y)
         {
@@ -53,17 +56,17 @@ namespace DummyDatabase4
             Console.Write("|");
             Console.WriteLine();
         }
-        private static void CreateLine(Column column, Dictionary<string, int> MaxLengthOfColumn, int Y)
+        private static void CreateLine(Dictionary<string, List<object>> Data, Dictionary<string, int> MaxLengthOfColumn, int Y , int i)
         {
             //Метод делает "линию" из данных переданных для вывода
 
             int X = 0;
 
-            foreach (var element in column.Line)
+            foreach (var element in Data.Keys)
             {
                 Console.SetCursorPosition(X, Y);
-                Console.Write($"|{element.Value.Data}");
-                X = X + MaxLengthOfColumn[element.Key] + 1;
+                Console.Write($"|{Data[element][i]}");
+                X = X + MaxLengthOfColumn[element] + 1;
             }
             Console.SetCursorPosition(X, Y);
             Console.Write("|");

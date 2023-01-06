@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,6 +11,13 @@ namespace DummyDatabase4
 {
     public class Column
     {
-        public Dictionary<string, Element> Line { get; set; } = new Dictionary<string, Element>();
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; private set; }
+
+        [JsonProperty(PropertyName = "type")]
+        public string Type { get; private set; }
+
+        [JsonProperty(PropertyName = "isPrimary")]
+        public bool IsPrimary { get; private set; }
     }
 }
